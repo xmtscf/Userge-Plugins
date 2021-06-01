@@ -54,7 +54,7 @@ def format_release(x: str) -> Optional[str]:
     r = get(magisk_release.format(x))
     if r.status_code != 200:
         return
-    r_data = ujson.loads(r.text)['magisk']
+    r_data = ujson.loads(r.text)["magisk"]
     out = f"⦁ <b>{x.title()}</b>:  <a href={r_data.get('link')}>v{r_data.get('version')}</a>"
     if changelog := r_data.get("note"):
         out += f"  |  [Changelog]({changelog})"
