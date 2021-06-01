@@ -10,7 +10,7 @@ import asyncio
 from typing import Optional
 
 import ujson
-from aiohttp import ClientSession
+
 from bs4 import BeautifulSoup
 from requests import get
 from userge import Message, userge
@@ -52,11 +52,11 @@ async def device_recovery(message: Message):
     await message.edit(reply)
 
 
-async def format_release(x: str, session: ClientSession) -> Optional[str]:
-    async with session.get(magisk_release.format(x)) as resp:
-        if resp.status != 200:
-            return
-    r_data = ujson.loads(await resp.text())
+def format_release(x: str) -> Optional[str]:
+    r = get(magisk_release.format(x))
+    if r.status_code != 200:
+        return
+    r_data = ujson.loads(r.text)
     out = f"⦁ <b>{x.title()}</b>:  <a href={r_data.get('link')}>v{r_data.get('version')}</a>"
     if changelog := r_data.get("note"):
         out += f"  |  [Changelog]({changelog})"
@@ -66,12 +66,7 @@ async def format_release(x: str, session: ClientSession) -> Optional[str]:
 @userge.on_cmd("magisk$", about={"header": "Get Latest Magisk Zip and Manager"})
 async def magisk_(message: Message):
     """Get Latest MAGISK"""
-    async with ClientSession() as session:
-        releases = await asyncio.gather(
-            *map(lambda x: format_release(x, session), ["stable", "beta", "canary"])
-        )
-
     await message.edit(
-        "𝗟𝗮𝘁𝗲𝘀𝘁 𝗠𝗮𝗴𝗶𝘀𝗸 𝗥𝗲𝗹𝗲𝗮𝘀𝗲:\n" + "\n".join(list(filter(None, releases))),
+        "𝗟𝗮𝘁𝗲𝘀𝘁 𝗠𝗮𝗴𝗶𝘀𝗸 𝗥𝗲𝗹𝗲𝗮𝘀𝗲:\n" + "\n".join(list(filter(None, map(format_release, ["stable", "beta", "canary"]))))
         disable_web_page_preview=True,
     )
