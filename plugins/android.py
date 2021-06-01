@@ -59,7 +59,7 @@ async def magisk_(message: Message):
             async with session.get(magisk_release.format(x)) as resp:
                 if resp.status != 200:
                     return
-               r_data = ujson.loads(await resp.text())
+            r_data = ujson.loads(await resp.text())
             out = f"⦁ <b>{x.title()}</b>:  <a href={r_data.get('link')}>v{r_data.get('version')}</a>"
             if changelog := r_data.get("note"):
                 out += f"  |  [Changelog]({changelog})"
