@@ -6,11 +6,9 @@
 
 """for stuff related to android"""
 
-import asyncio
 from typing import Optional
 
 import ujson
-
 from bs4 import BeautifulSoup
 from requests import get
 from userge import Message, userge
@@ -67,6 +65,9 @@ def format_release(x: str) -> Optional[str]:
 async def magisk_(message: Message):
     """Get Latest MAGISK"""
     await message.edit(
-        "𝗟𝗮𝘁𝗲𝘀𝘁 𝗠𝗮𝗴𝗶𝘀𝗸 𝗥𝗲𝗹𝗲𝗮𝘀𝗲:\n" + "\n".join(list(filter(None, map(format_release, ["stable", "beta", "canary"])))),
+        "𝗟𝗮𝘁𝗲𝘀𝘁 𝗠𝗮𝗴𝗶𝘀𝗸 𝗥𝗲𝗹𝗲𝗮𝘀𝗲:\n"
+        + "\n".join(
+            list(filter(None, map(format_release, ["stable", "beta", "canary"])))
+        ),
         disable_web_page_preview=True,
     )
