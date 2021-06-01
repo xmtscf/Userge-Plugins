@@ -4,7 +4,7 @@
 #  All rights reserved.
 #
 #  Authors: 1. https://github.com/code-rgb [TG: @DeletedUser420]
-#           2. https://github.com/midnightmadwalk [TG: @MidnightMadwalk] for 🌀 Spin
+# 2. https://github.com/midnightmadwalk [TG: @MidnightMadwalk] for 🌀 Spin
 
 
 import os

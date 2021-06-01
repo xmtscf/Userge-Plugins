@@ -1,8 +1,7 @@
-# Quotes for AutoBio 
+# Quotes for AutoBio
 
-# English Quotes 
+# English Quotes
 ENGLISH_QUOTES = [
-
     "Best way to earn respect is By treating others with respect ",
     "Win in silence. Let them think you're losing. ",
     "The biggest slap to your enemies is your success.‌‌ ",
@@ -32,12 +31,12 @@ ENGLISH_QUOTES = [
     "You miss 100 percent of the shots you don't take. ",
     "The way to get started is to quit talking and begin doing. ",
     "Your time is limited, so don't waste it living someone else's life. ",
-    "That which does not kill us makes us stronger. "]
+    "That which does not kill us makes us stronger. ",
+]
 
 
-# Hindi Quotes 
+# Hindi Quotes
 HINDI_QUOTES = [
-
     "अपने दुश्मनों के लिए सबसे बड़ा थप्पड़ आपकी सफलता है।‌‌ ",
     "चुप्पी में जीत। उन्हें लगता है कि आप हार रहे हैं। ",
     "जीतने वाले कभी हार नही मानते और हार मानने वाले कभी जीतते नही‌‌ ",
@@ -68,4 +67,5 @@ HINDI_QUOTES = [
     "जो सबका मित्र  होता है, वो दरअसल  किसी का मित्र नहीं होता ",
     "वक्त पर अपनी  गलती ना मानना एक और गलती करना है। ",
     "किसी माथे को चूमना उसकी रूह को चूमना जैसा है। ",
-    "शुक्रगुजार होना भी एक आदत है, इसकी आदत डालनी पड़ती है। "]
+    "शुक्रगुजार होना भी एक आदत है, इसकी आदत डालनी पड़ती है। ",
+]
