@@ -52,23 +52,23 @@ async def device_recovery(message: Message):
     await message.edit(reply)
 
 
+async def format_release(x: str, session: ClientSession) -> Optional[str]:
+    async with session.get(magisk_release.format(x)) as resp:
+        if resp.status != 200:
+            return
+    r_data = ujson.loads(await resp.text())
+    out = f"⦁ <b>{x.title()}</b>:  <a href={r_data.get('link')}>v{r_data.get('version')}</a>"
+    if changelog := r_data.get("note"):
+        out += f"  |  [Changelog]({changelog})"
+    return out
+
+
 @userge.on_cmd("magisk$", about={"header": "Get Latest Magisk Zip and Manager"})
 async def magisk_(message: Message):
     """Get Latest MAGISK"""
     async with ClientSession() as session:
-
-        async def format_release(x: str) -> Optional[str]:
-            async with session.get(magisk_release.format(x)) as resp:
-                if resp.status != 200:
-                    return
-            r_data = ujson.loads(await resp.text())
-            out = f"⦁ <b>{x.title()}</b>:  <a href={r_data.get('link')}>v{r_data.get('version')}</a>"
-            if changelog := r_data.get("note"):
-                out += f"  |  [Changelog]({changelog})"
-            return out
-
         releases = await asyncio.gather(
-            *map(format_release, ["stable", "beta", "canary"])
+            *map(lambda x: format_release(x, session), ["stable", "beta", "canary"])
         )
 
     await message.edit(
