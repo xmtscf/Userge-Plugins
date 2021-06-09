@@ -68,6 +68,6 @@ async def web(message: Message):
     response, err = await process.communicate()
     links = "\n".join(re.findall(r"https?://[^\"\']+", response.decode()))
     if links:
-        await message.edit(f"**I found these links** :\n{links}")
+        await message.edit(f"**Links** :\n{links}")
     else:
         await message.edit("`" + response.decode() + err.decode() + "`")
